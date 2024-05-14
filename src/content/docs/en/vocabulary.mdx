@@ -19,3 +19,58 @@ It is a way of organizing an application by splitting it into 3 main layers:
 - Model, for the data (DB)
 - View, for the display (templates)
 - Controllers, containing the business logic (code)
+
+## Type-hint
+
+In a Symfony application, a type-hint is written into a controller's parameters, or into a class constructor's parameters.
+
+It is then analyzed by Symfony to find the correct service and provide an instance to the controller or the service.
+
+### Controller
+
+For instance, in a controller:
+
+```php
+#[Route('/new', name: 'app_article_crud_new', methods: ['GET', 'POST'])]
+public function new(
+    Request $request, // <-- Special type-hint: provides the incoming request as an object
+    EntityManagerInterface $entityManager, // <-- Type-hint
+    SluggerInterface $slugger // <-- Type-hint
+): Response
+{
+    //...
+}
+```
+
+### Service
+
+```php
+class NewsletterService
+{
+    public function __construct(
+        private MailerInterface $mailer, // <-- Type-hint
+        private string $adminEmail
+    ) {
+    }
+
+    //...
+}
+```
+
+> **Autowired** types can be type-hinted
+
+## Slug
+
+A slug is a string with no spaces, accents, special characters, etc...making it more convenient to use into a URL or a filename.
+
+For example, if an article has the following title:
+
+`Découvrez l'injection de dépendances dans Symfony`
+
+Then the corresponding slug may be :
+
+`decouvrez-l-injection-de-dependances-dans-symfony`
+
+The article could then be visited at the following URL:
+
+`https://domain.com/articles/decouvrez-l-injection-de-dependances-dans-symfony`

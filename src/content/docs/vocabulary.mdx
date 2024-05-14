@@ -19,3 +19,58 @@ C'est une manière d'organiser son application en la séparant en 3 grandes couc
 - Le modèle, représentant les données (BDD)
 - La vue, pour l'affichage (les templates)
 - Les contrôleurs, qui contiennent la logique métier (le code)
+
+## Type-hint
+
+Dans une application Symfony, un type-hint est un type qu'on indique dans les paramètres d'un contrôleur, ou bien d'un constructeur de classe.
+
+Il est ensuite analysé par Symfony pour trouver le service correspondant et pouvoir en fournir une instance au contrôleur ou au service concerné.
+
+### Contrôleur
+
+Par exemple, dans un contrôleur :
+
+```php
+#[Route('/new', name: 'app_article_crud_new', methods: ['GET', 'POST'])]
+public function new(
+    Request $request, // <-- Type-hint spécial : fournit la requête entrante au contrôleur
+    EntityManagerInterface $entityManager, // <-- Type-hint
+    SluggerInterface $slugger // <-- Type-hint
+): Response
+{
+    //...
+}
+```
+
+### Service
+
+```php
+class NewsletterService
+{
+    public function __construct(
+        private MailerInterface $mailer, // <-- Type-hint
+        private string $adminEmail
+    ) {
+    }
+
+    //...
+}
+```
+
+> On peut type-hinter des types **autowirés**
+
+## Slug
+
+Un slug est une chaîne de caractères ne contenant pas d'espaces, d'accents, de caractères spéciaux, etc...la rendant utilisable dans des URL ou des noms de fichiers.
+
+Par exemple, si on a un article dont le titre est :
+
+`Découvrez l'injection de dépendances dans Symfony`
+
+Alors le slug correspondant pourrait être :
+
+`decouvrez-l-injection-de-dependances-dans-symfony`
+
+L'article pourrait alors être visible à l'adresse suivante, par exemple :
+
+`https://domain.com/articles/decouvrez-l-injection-de-dependances-dans-symfony`
