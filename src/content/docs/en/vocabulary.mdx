@@ -74,3 +74,9 @@ Then the corresponding slug may be :
 The article could then be visited at the following URL:
 
 `https://domain.com/articles/decouvrez-l-injection-de-dependances-dans-symfony`
+
+## Recipe
+
+A recipe helps configuring a package or a bundle when installing it in an existing Symfony application. It's executed by the Symfony Flex tool.
+
+Symfony Flex is a **Composer plugin**: when using `composer require XXX` to install a package, Symfony Flex will verify if a recipe is available for this package. A recipe will contain, for example, configuration files, or files that will be created at a determined location into the project. The goal is to facilitate the integration of a package into a Symfony application.

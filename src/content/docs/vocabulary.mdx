@@ -74,3 +74,9 @@ Alors le slug correspondant pourrait être :
 L'article pourrait alors être visible à l'adresse suivante, par exemple :
 
 `https://domain.com/articles/decouvrez-l-injection-de-dependances-dans-symfony`
+
+## Recette
+
+Une recette sert à préconfigurer un package ou un bundle lors de son installation au sein d'une application Symfony. Elle est exécutée par l'outil Symfony Flex.
+
+Symfony Flex est un **plugin Composer** : lorsqu'on installe un package avec `composer require XXX`, Symfony Flex va vérifier s'il existe une **recette** pour ce package. Une recette contiendra par exemple des fichiers de configuration, ou bien des fichiers à créer dans l'arborescence du projet. Le but est de faciliter l'intégration d'un package au sein d'une application Symfony.
