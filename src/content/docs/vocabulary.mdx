@@ -80,3 +80,63 @@ L'article pourrait alors être visible à l'adresse suivante, par exemple :
 Une recette sert à préconfigurer un package ou un bundle lors de son installation au sein d'une application Symfony. Elle est exécutée par l'outil Symfony Flex.
 
 Symfony Flex est un **plugin Composer** : lorsqu'on installe un package avec `composer require XXX`, Symfony Flex va vérifier s'il existe une **recette** pour ce package. Une recette contiendra par exemple des fichiers de configuration, ou bien des fichiers à créer dans l'arborescence du projet. Le but est de faciliter l'intégration d'un package au sein d'une application Symfony.
+
+## Interface
+
+En POO, une interface est une **abstraction** : elle ne contient que des signatures de méthodes. Ainsi, toute classe qui **implémente** une interface devra founir une définition pour chaque méthode de l'interface.
+
+### Exemple
+
+Je souhaite développer un système d'alertes. Par exemple, à l'arrivée d'un événement, je veux alerter un utilisateur, ou bien l'administrateur de l'application.
+
+Mais pour envoyer des alertes, je peux utiliser différents **moyens** : SMS, email, alerte push sur une application mobile, etc...
+
+Je vais d'abord définir une interface, **une abstraction**, me permettant d'indiquer comment un système d'alerte doit se comporter :
+
+```php
+<?php
+
+interface AlertInterface
+{
+    /**
+     * Send alert notification
+     */
+    public function sendAlert();
+}
+```
+
+Ensuite, si je veux définir la manière d'envoyer une alerte par SMS, je peux créer une classe et indiquer qu'elle **implémente** `AlertInterface` :
+
+```php
+<?php
+
+class SmsAlert implements AlertInterface
+{
+    public function sendAlert()
+    {
+        // Envoi d'un SMS
+    }
+}
+```
+
+Mais si je veux également définir l'envoi par email :
+
+```php
+<?php
+
+class EmailAlert implements AlertInterface
+{
+    public function sendAlert()
+    {
+        // Envoi d'un email
+    }
+}
+```
+
+Ainsi, au niveau de `AlertInterface`, j'indique simplement comment un système d'alerte doit se comporter. Ensuite, je peux définir des classes qui **implémentent** cette interface, pour réaliser le système voulu, mais de façons différentes.
+
+:::note
+
+Une interface peut hériter d'une autre interface
+
+:::

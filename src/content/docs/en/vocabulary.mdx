@@ -80,3 +80,63 @@ The article could then be visited at the following URL:
 A recipe helps configuring a package or a bundle when installing it in an existing Symfony application. It's executed by the Symfony Flex tool.
 
 Symfony Flex is a **Composer plugin**: when using `composer require XXX` to install a package, Symfony Flex will verify if a recipe is available for this package. A recipe will contain, for example, configuration files, or files that will be created at a determined location into the project. The goal is to facilitate the integration of a package into a Symfony application.
+
+## Interface
+
+In OOP, an interface is an **abstraction**: it only contains method signatures. So every class **implementing** an interface must provide a definition for each method of the interface.
+
+### Example
+
+I'd like to write an alert system. For instance, when something happens, I want to alert a user, or an administrator.
+
+But sending alerts can be done in many ways: SMS, emails, push alert on the phone, etc...
+
+First, I'm going to define an interface, **an abstraction**, so that I can define how an alert system must behave:
+
+```php
+<?php
+
+interface AlertInterface
+{
+    /**
+     * Send alert notification
+     */
+    public function sendAlert();
+}
+```
+
+Then, if I want to implement how to send SMS alerts, I can create a class and make it **implement** `AlertInterface`:
+
+```php
+<?php
+
+class SmsAlert implements AlertInterface
+{
+    public function sendAlert()
+    {
+        // Envoi d'un SMS
+    }
+}
+```
+
+But I can also write the email one:
+
+```php
+<?php
+
+class EmailAlert implements AlertInterface
+{
+    public function sendAlert()
+    {
+        // Envoi d'un email
+    }
+}
+```
+
+In conclusion, in `AlertInterface`, I only write **how** an alert system must behave. Then, I can write classes that **implement** this interface, so that they implement the system, but using different ways.
+
+:::note
+
+An interface can inherit another interface
+
+:::
