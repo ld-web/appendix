@@ -140,3 +140,11 @@ In conclusion, in `AlertInterface`, I only write **how** an alert system must be
 An interface can inherit another interface
 
 :::
+
+## Polyfill
+
+A `polyfill`, in a specific version, can allow one to use features from a more recent version, by emulating them.
+
+For instance, if I'm using PHP 7, I can't use features from PHP 8.
+
+But if I install the Symfony [PHP 8.0 Polyfill](https://symfony.com/packages/Polyfill%20PHP%208.0) package, I can then use functions like [`str_contains`](https://www.php.net/manual/en/function.str-contains.php) ([reference](https://github.com/symfony/polyfill-php80/blob/1.x/Php80.php#L91-L94)), which was introduced in PHP 8.0, because a **polyfill** of this function was written inside this Symfony package.

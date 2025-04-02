@@ -140,3 +140,11 @@ Ainsi, au niveau de `AlertInterface`, j'indique simplement comment un système d
 Une interface peut hériter d'une autre interface
 
 :::
+
+## Polyfill
+
+Un `polyfill` permet, dans une version précise, d'utiliser des fonctionnalités présentes dans une version plus récente, en les simulant.
+
+Par exemple, si je suis en PHP 7, je ne peux pas bénéficier des fonctionnalités présentes en PHP 8.
+
+Mais si j'utilise le package [PHP 8.0 Polyfill](https://symfony.com/packages/Polyfill%20PHP%208.0) de Symfony, alors je pourrai utiliser des fonctions comme [`str_contains`](https://www.php.net/manual/en/function.str-contains.php) ([référence](https://github.com/symfony/polyfill-php80/blob/1.x/Php80.php#L91-L94)), qui n'est apparue qu'en PHP 8.0, puisqu'un **polyfill** de cette fonction a été écrit dans ce composant de Symfony.
