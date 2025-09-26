@@ -21,9 +21,13 @@ export default defineConfig({
           lang: "en",
         },
       },
-      social: {
-        github: "https://github.com/ld-web/appendix",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/ld-web/appendix",
+        },
+      ],
     }),
   ],
 });
